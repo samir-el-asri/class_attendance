@@ -1,0 +1,44 @@
+@extends('layouts.app')
+
+@section('content')
+
+<div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-lg-7 mx-auto">
+                <form method="post" action="/classes/{{$classe->id}}">
+                    @method('PUT')
+                    @csrf
+                    <div class="form-group"><label for="filiere">Filiére:</label><select class="form-control"
+                            name="filiere">
+                            @foreach ($filieres as $filiere)
+                                @if ($classe->filiere == $filiere[0])
+                                    <option selected value="{{$filiere[0]}}">{{$filiere[1]}}</option>
+                                @else
+                                    <option value="{{$filiere[0]}}">{{$filiere[1]}}</option>
+                                @endif
+                            @endforeach
+                        </select></div>
+                    <div class="form-group"><label for="annee">Année: </label><select class="form-control" id="annee"
+                            name="annee">
+                            @foreach ($annees as $annee)
+                                @if ($classe->annee == $annee[0])
+                                    <option selected value="{{$annee[0]}}">{{$annee[1]}}</option>
+                                @else
+                                    <option value="{{$annee[0]}}">{{$annee[1]}}</option>
+                                @endif
+                            @endforeach
+                        </select></div>
+                    <div class="form-group"><label for="groupe">Groupe:</label><input type="text" class="form-control"
+                            id="groupe" placeholder="G1" name="groupe" value="{{$classe->groupe}}" /></div>
+                    <div class="form-group"><label for="anneeScolaire">Année Scolaire</label><input type="text"
+                            class="form-control" id="anneeScolaire" placeholder="2022/2023" name="anneeScolaire" value="{{$classe->anneeScolaire}}" />
+                    </div>
+                    <div class="form-group"><button class="btn btn-primary w-100" type="submit">Modifier</button></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@endsection
