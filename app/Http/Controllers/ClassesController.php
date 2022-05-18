@@ -98,7 +98,7 @@ class ClassesController extends Controller
      */
     public function update(Request $request, Classe $classe)
     {
-        dd($classe);
+        //dd($classe);
         $data = request()->validate([
             'filiere' => 'required',
             'annee' => 'required',
