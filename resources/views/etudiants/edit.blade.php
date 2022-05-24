@@ -7,8 +7,8 @@
         <div class="row">
             <div class="col-md-12 col-lg-7 mx-auto">
                 <form method="post" action="/etudiants/{{$etudiant->id}}">
-                    @method('PUT')
                     @csrf
+                    @method('PUT')
                     <div class="form-group"><label for="nom">Nom:</label><input type="text" class="form-control"
                             id="nom" name="nom" placeholder="Saisir votre nom" value="{{$etudiant->nom}}" /></div>
                     <div class="form-group">

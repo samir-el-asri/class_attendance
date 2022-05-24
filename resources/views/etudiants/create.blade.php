@@ -14,7 +14,7 @@
                         <label for="classe_id">Classe:</label>
                         <select class="form-control" id="classe_id" name="classe_id">
                             @foreach ($classes as $classe)
-                                <option value="{{$classe['id']}}">{{$classe['nom']}}</option>
+                                <option value="{{$classe->id}}">{{$classe->annee.$classe->filiere->abbreviation."-".$classe->groupe}}</option>
                             @endforeach
                         </select>
                     </div>

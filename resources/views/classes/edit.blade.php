@@ -7,15 +7,15 @@
         <div class="row">
             <div class="col-md-12 col-lg-7 mx-auto">
                 <form method="post" action="/classes/{{$classe->id}}">
-                    @method('PUT')
                     @csrf
+                    @method('PUT')
                     <div class="form-group"><label for="filiere">Filiére:</label><select class="form-control"
-                            name="filiere">
+                            name="filiere_id">
                             @foreach ($filieres as $filiere)
-                                @if ($classe->filiere == $filiere[0])
-                                    <option selected value="{{$filiere[0]}}">{{$filiere[1]}}</option>
+                                @if ($filiere->id == $classe->filiere_id)
+                                    <option selected value="{{$filiere->id}}">{{$filiere->titre}}</option>
                                 @else
-                                    <option value="{{$filiere[0]}}">{{$filiere[1]}}</option>
+                                    <option value="{{$filiere->id}}">{{$filiere->titre}}</option>
                                 @endif
                             @endforeach
                         </select></div>

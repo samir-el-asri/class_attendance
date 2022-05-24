@@ -17,8 +17,8 @@ class Etudiant extends Model
         parent::boot();
     }
     
-    public function user(): BelongsTo
+    public function Classe()
     {
-        return $this->belongsTo(Classe::class)->withTimestamps();
+        return $this->belongsTo(Classe::class, "classe_id", "id");
     }
 }

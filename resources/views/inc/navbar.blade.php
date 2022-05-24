@@ -17,8 +17,9 @@
                 <div class="collapse navbar-collapse" id="navcol-1">
                     <ul class="nav navbar-nav mr-auto">
                         <li role="presentation" class="nav-item"><a class="nav-link active" href="/classes">Classes</a></li>
-                        <li role="presentation" class="nav-item"><a class="nav-link" href="/etudiants">Etudiants</a>
-                        </li>
+                        <li role="presentation" class="nav-item"><a class="nav-link" href="/etudiants">Etudiants</a></li>
+                        <li role="presentation" class="nav-item"><a class="nav-link" href="/matieres">Matieres</a></li>
+                        <li role="presentation" class="nav-item"><a class="nav-link" href="/filieres">Filieres</a></li>
                     </ul>
                 </div>
             </ul>

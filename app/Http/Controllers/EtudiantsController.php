@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Etudiant;
 use App\Models\Classe;
+use App\Models\Filiere;
 use Illuminate\Http\Request;
 
 class EtudiantsController extends Controller
@@ -27,12 +28,6 @@ class EtudiantsController extends Controller
     public function create()
     {
         $classes = Classe::all();
-        $newClasses = [];
-        foreach ($classes as $classe) {
-            $nom = $classe->annee.$classe->filiere."-".$classe->groupe;
-            array_push($newClasses, ["id"=>$classe->id, "nom"=>$nom]);
-        }
-        $classes = $newClasses;
         return view("etudiants.create", compact("classes"));
     }
 
@@ -73,7 +68,7 @@ class EtudiantsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Etudiant  $etudiant
+     * @param  \App\Models\Etudiant $etudiant
      * @return \Illuminate\Http\Response
      */
     public function edit(Etudiant $etudiant)
@@ -83,7 +78,7 @@ class EtudiantsController extends Controller
         $classes = Classe::all();
         $newClasses = [];
         foreach ($classes as $classe) {
-            $nom = $classe->annee.$classe->filiere."-".$classe->groupe;
+            $nom = $classe->annee.$classe->filiere->abbreviation."-".$classe->groupe;
             array_push($newClasses, ["id"=>$classe->id, "nom"=>$nom]);
         }
         $classes = $newClasses;

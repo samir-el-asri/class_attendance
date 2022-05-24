@@ -21,7 +21,7 @@
                         <tr>
                             <td>{{$etudiant->nom}}</td>
                             <td>{{$etudiant->age}}</td>
-                            <td>{{$etudiant->classe_id}}</td>
+                            <td>{{$etudiant->classe->annee.$etudiant->classe->filiere->abbreviation."-".$etudiant->classe->groupe}}</td>
                             <td>
                                 <a href="/etudiants/{{$etudiant->id}}/edit"><button class="btn btn-primary btn-warning" type="button">Modifier</button></a>
                                 <form method="post" action="/etudiants/{{$etudiant->id}}" class="d-inline">

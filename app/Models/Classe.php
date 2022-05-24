@@ -10,11 +10,16 @@ class Classe extends Model
     use HasFactory;
 
     protected $fillable = [
-        'filiere', 'annee', 'groupe', 'anneeScolaire'
+        'filiere_id', 'annee', 'groupe', 'anneeScolaire'
     ];
 
-    public function etudiants(): HasMany
+    public function etudiants()
     {
-        return $this->hasMany(Etudiant::class)->withTimestamps;
+        return $this->hasMany(Etudiant::class)->withTimestamps();
+    }
+    
+    public function filiere()
+    {
+        return $this->belongsTo(Filiere::class, "filiere_id");
     }
 }

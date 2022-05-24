@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Classe;
+use App\Models\Filiere;
+use App\Models\Etudiant;
 
 class ClassesController extends Controller
 {
@@ -25,7 +27,8 @@ class ClassesController extends Controller
      */
     public function create()
     {
-        return view("classes.create");
+        $filieres = Filiere::all();
+        return view("classes.create", compact('filieres'));
     }
 
     /**
@@ -37,14 +40,14 @@ class ClassesController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'filiere' => 'required',
+            'filiere_id' => 'required',
             'annee' => 'required',
             'groupe' => 'required',
             'anneeScolaire' => 'required'
         ]);
 
         $classe = new Classe;
-        $classe->filiere = $request->input("filiere");
+        $classe->filiere_id = $request->input("filiere_id");
         $classe->annee = $request->input("annee");
         $classe->groupe = $request->input("groupe");
         $classe->anneeScolaire = $request->input("anneeScolaire");
@@ -61,7 +64,7 @@ class ClassesController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
@@ -73,12 +76,7 @@ class ClassesController extends Controller
     public function edit($id)
     {
         $classe = Classe::find($id);
-
-        $filieres = [
-            ["IIR", "Ingénierie Informatique Et Réseaux"],
-            ["IFA", "Ingénierie Financière Et Audit"],
-            ["IAII", "Ingénierie Automatismes Et Informatique Industrielle"]
-        ];
+        $filieres = Filiere::all();
 
         $annees = [
             ["3", "3éme année"],
@@ -96,11 +94,12 @@ class ClassesController extends Controller
      * @param  \App\Models\Classe  $classe
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Classe $classe)
+    public function update(Request $request, $id)
     {
-        //dd($classe);
+        $classe = Classe::find($id);
+        
         $data = request()->validate([
-            'filiere' => 'required',
+            'filiere_id' => 'required',
             'annee' => 'required',
             'groupe' => 'required',
             'anneeScolaire' => 'required'

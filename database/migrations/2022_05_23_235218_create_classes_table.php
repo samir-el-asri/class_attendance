@@ -16,9 +16,9 @@ class CreateClassesTable extends Migration
         if (!Schema::hasTable('classes')) {
             Schema::create('classes', function (Blueprint $table) {
                 $table->id();
-                $table->string("filiere");
-                $table->integer("annee");
+                $table->integer("filiere_id");
                 $table->string("groupe");
+                $table->integer("annee");
                 $table->string("anneeScolaire");
                 $table->timestamps();
             });
