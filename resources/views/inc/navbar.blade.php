@@ -20,6 +20,7 @@
                         <li role="presentation" class="nav-item"><a class="nav-link" href="/etudiants">Etudiants</a></li>
                         <li role="presentation" class="nav-item"><a class="nav-link" href="/matieres">Matieres</a></li>
                         <li role="presentation" class="nav-item"><a class="nav-link" href="/filieres">Filieres</a></li>
+                        <li role="presentation" class="nav-item"><a class="nav-link" href="/enseignants">Enseignants</a></li>
                     </ul>
                 </div>
             </ul>

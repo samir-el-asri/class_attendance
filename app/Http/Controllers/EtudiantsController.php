@@ -41,12 +41,14 @@ class EtudiantsController extends Controller
     {
         $this->validate($request, [
             'nom' => 'required',
+            'prenom' => 'required',
             'age' => 'required',
             'classe_id' => 'required'
         ]);
 
         $etudiant = new Etudiant;
         $etudiant->nom = $request->input("nom");
+        $etudiant->prenom = $request->input("prenom");
         $etudiant->age = $request->input("age");
         $etudiant->classe_id = $request->input("classe_id");
         $etudiant->save();
@@ -97,6 +99,7 @@ class EtudiantsController extends Controller
     {
         $data = request()->validate([
             'nom' => 'required',
+            'prenom' => 'required',
             'age' => 'required',
             'classe_id' => 'required'
         ]);

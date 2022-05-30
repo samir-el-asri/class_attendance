@@ -10,7 +10,7 @@ class Etudiant extends Model
     use HasFactory;
 
     protected $fillable = [
-        'nom', 'age', 'classe_id'
+        'nom', 'prenom', 'age', 'classe_id'
     ];
 
     protected static function boot(){
