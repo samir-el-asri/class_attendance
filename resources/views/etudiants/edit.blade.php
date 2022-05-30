@@ -11,6 +11,8 @@
                     @method('PUT')
                     <div class="form-group"><label for="nom">Nom:</label><input type="text" class="form-control"
                             id="nom" name="nom" placeholder="Saisir votre nom" value="{{$etudiant->nom}}" /></div>
+                    <div class="form-group"><label for="prenom">Prenom:</label><input type="text" class="form-control"
+                            id="prenom" name="prenom" placeholder="Saisir votre prenom" value="{{$etudiant->prenom}}" /></div>
                     <div class="form-group">
                         <label for="classe_id">Classe:</label>
                         <select class="form-control" id="classe_id" name="classe_id">

@@ -10,9 +10,7 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th>Filiére</th>
-                        <th>Annee</th>
-                        <th>Groupe</th>
+                        <th>Classe</th>
                         <th>Annee Scolaire</th>
                         <th><span style="text-decoration: line-through;">CR</span>UD</th>
                     </tr>
@@ -20,9 +18,7 @@
                 <tbody>
                     @foreach ($classes as $classe)
                         <tr>
-                            <td>{{$classe->filiere->abbreviation}}</td>
-                            <td>{{$classe->annee}}</td>
-                            <td>{{$classe->groupe}}</td>
+                            <td>{{$classe->annee.$classe->filiere->abbreviation."-".$classe->groupe}}</td>
                             <td>{{$classe->anneeScolaire}}</td>
                             <td>
                                 <a href="/classes/{{$classe->id}}/edit"><button class="btn btn-primary btn-warning" type="button">Modifier</button></a>
