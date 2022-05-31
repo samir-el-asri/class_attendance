@@ -4,7 +4,7 @@
 
 <div class="row mx-auto">
     <div class="col-8 mx-auto">
-        <h1>Les Etudiants:</h1>
+        <h1>Les Enseignants:</h1>
         <hr>
         <div class="table-responsive table-bordered mx-auto">
             <table class="table">

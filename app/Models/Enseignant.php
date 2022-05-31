@@ -12,4 +12,9 @@ class Enseignant extends Model
     protected $fillable = [
         'nom', 'prenom', 'niveauAcademique', 'statut'
     ];
+
+    public function matieres()
+    {
+        return $this->hasMany(Matiere::class)->withTimestamps();
+    }
 }

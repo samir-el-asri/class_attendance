@@ -13,6 +13,7 @@
                         <th>Titre</th>
                         <th>Coefficient</th>
                         <th>Filiére</th>
+                        <th>Enseignant</th>
                         <th><span style="text-decoration: line-through;">CR</span>UD</th>
                     </tr>
                 </thead>
@@ -22,6 +23,7 @@
                             <td>{{$matiere->titre}}</td>
                             <td>{{$matiere->coefficient}}</td>
                             <td>{{$matiere->filiere->abbreviation}}</td>
+                            <td>{{$matiere->enseignant->prenom." ".$matiere->enseignant->nom}}</td>
                             <td>
                                 <a href="/matieres/{{$matiere->id}}/edit"><button class="btn btn-primary btn-warning" type="button">Modifier</button></a>
                                 <form method="post" action="/matieres/{{$matiere->id}}" class="d-inline">

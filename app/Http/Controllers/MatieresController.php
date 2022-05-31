@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Matiere;
 use App\Models\Filiere;
+use App\Models\Enseignant;
 use Illuminate\Http\Request;
 
 class MatieresController extends Controller
@@ -27,7 +28,8 @@ class MatieresController extends Controller
     public function create()
     {
         $filieres = Filiere::all();
-        return view("matieres.create", compact('filieres'));
+        $enseignants = Enseignant::all();
+        return view("matieres.create", compact('filieres', 'enseignants'));
     }
 
     /**
@@ -41,13 +43,15 @@ class MatieresController extends Controller
         $this->validate($request, [
             'titre' => 'required',
             'coefficient' => 'required',
-            'filiere_id' => 'required'
+            'filiere_id' => 'required',
+            'enseignant_id' => 'required'
         ]);
 
         $matiere = new Matiere;
         $matiere->titre = $request->input("titre");
         $matiere->coefficient = $request->input("coefficient");
         $matiere->filiere_id = $request->input("filiere_id");
+        $matiere->enseignant_id = $request->input("enseignant_id");
         $matiere->save();
 
         return redirect('/matieres')->with("success", "La matiere a été ajoutée!");
@@ -61,7 +65,7 @@ class MatieresController extends Controller
      */
     public function show(Matiere $matiere)
     {
-        //
+        //dd($matiere->enseignant);
     }
 
     /**
@@ -74,7 +78,8 @@ class MatieresController extends Controller
     {
         $matiere = Matiere::find($matiere->id);
         $filieres = Filiere::all();
-        return view("matieres.edit", compact('matiere', 'filieres'));
+        $enseignants = Enseignant::all();
+        return view("matieres.edit", compact('matiere', 'filieres', 'enseignants'));
     }
 
     /**
@@ -89,7 +94,8 @@ class MatieresController extends Controller
         $data = request()->validate([
             'titre' => 'required',
             'coefficient' => 'required',
-            'filiere_id' => 'required'
+            'filiere_id' => 'required',
+            'enseignant_id' => 'required'
         ]);
         
         $matiere->update($data);

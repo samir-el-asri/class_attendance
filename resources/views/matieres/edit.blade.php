@@ -24,7 +24,17 @@
                             @endif
                         @endforeach
                     </select></div>
-                    <div class="form-group"><button class="btn btn-primary w-100" type="submit">Ajouter</button></div>
+                    <div class="form-group"><label for="enseignant">Enseignant:</label><select class="form-control"
+                        name="enseignant_id">
+                        @foreach ($enseignants as $enseignant)
+                            @if ($enseignant->id == $matiere->enseignant_id)
+                                <option selected value="{{$enseignant->id}}">{{$enseignant->prenom." ".$enseignant->nom}}</option>
+                            @else
+                                <option value="{{$enseignant->id}}">{{$enseignant->prenom." ".$enseignant->nom}}</option>
+                            @endif
+                        @endforeach
+                    </select></div>
+                    <div class="form-group"><button class="btn btn-primary w-100" type="submit">Modifier</button></div>
                 </form>
             </div>
         </div>
