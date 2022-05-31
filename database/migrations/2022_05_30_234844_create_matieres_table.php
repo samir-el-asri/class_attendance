@@ -19,6 +19,7 @@ class CreateMatieresTable extends Migration
                 $table->string("titre");
                 $table->float("coefficient", 10, 2);
                 $table->integer("filiere_id");
+                $table->integer("enseignant_id");
                 $table->timestamps();
             });
         }

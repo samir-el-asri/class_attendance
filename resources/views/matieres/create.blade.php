@@ -19,6 +19,12 @@
                                 <option value="{{$filiere->id}}">{{$filiere->titre}}</option>
                             @endforeach
                         </select></div>
+                    <div class="form-group"><label for="enseignant">Enseignant:</label><select class="form-control"
+                            name="enseignant_id">
+                            @foreach ($enseignants as $enseignant)
+                                <option value="{{$enseignant->id}}">{{$enseignant->prenom." ".$enseignant->nom}}</option>
+                            @endforeach
+                        </select></div>
                     <div class="form-group"><button class="btn btn-primary w-100" type="submit">Ajouter</button></div>
                 </form>
             </div>
