@@ -6,27 +6,18 @@
     <div class="col-8 mx-auto">
         <h1>Les Classes:</h1>
         <hr>
-        <div class="table-responsive table-bordered mx-auto">
+        <div class="table-responsive table-bordered mx-auto text-center w-50yy">
             <table class="table">
                 <thead>
                     <tr>
                         <th>Classe</th>
-                        <th>Annee Scolaire</th>
-                        <th><span style="text-decoration: line-through;">CR</span>UD</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($classes as $classe)
                         <tr>
-                            <td>{{$classe->annee.$classe->filiere->abbreviation."-".$classe->groupe}}</td>
-                            <td>{{$classe->anneeScolaire}}</td>
                             <td>
-                                <a href="/classes/{{$classe->id}}/edit"><button class="btn btn-primary btn-warning" type="button">Modifier</button></a>
-                                <form method="post" action="/classes/{{$classe->id}}" class="d-inline">
-                                    @method('DELETE')
-                                    @csrf
-                                    <button class="btn btn-primary btn-danger" type="submit">Supprimer</button>
-                                </form>
+                                <a class="text-muted text-decoration-none" href="classes/{{$classe->id}}">{{$classe->annee.$classe->filiere->abbreviation."-".$classe->groupe}}</a>
                             </td>
                         </tr>
                     @endforeach

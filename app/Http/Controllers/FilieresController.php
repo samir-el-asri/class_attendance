@@ -59,7 +59,8 @@ class FilieresController extends Controller
      */
     public function show(Filiere $filiere)
     {
-        //
+        $filiere = Filiere::find($filiere->id);
+        return view("filieres.show", compact('filiere'));
     }
 
     /**

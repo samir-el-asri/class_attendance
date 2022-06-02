@@ -61,7 +61,8 @@ class EnseignantsController extends Controller
      */
     public function show(Enseignant $enseignant)
     {
-        //
+        $enseignant = Enseignant::find($enseignant->id);
+        return view("enseignants.show", compact('enseignant'));
     }
 
     /**

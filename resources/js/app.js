@@ -5,6 +5,8 @@
  */
 
 require('./bootstrap');
+require('./jquery.min');
+require('./main');
 
 window.Vue = require('vue').default;
 

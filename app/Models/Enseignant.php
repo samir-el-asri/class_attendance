@@ -15,6 +15,6 @@ class Enseignant extends Model
 
     public function matieres()
     {
-        return $this->hasMany(Matiere::class)->withTimestamps();
+        return $this->hasMany(Matiere::class);
     }
 }

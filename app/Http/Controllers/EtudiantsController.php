@@ -64,7 +64,9 @@ class EtudiantsController extends Controller
      */
     public function show(Etudiant $etudiant)
     {
-        //
+        $etudiant = Etudiant::find($etudiant->id);
+        // dd($etudiant->classe);
+        return view("etudiants.show", compact('etudiant'));
     }
 
     /**
