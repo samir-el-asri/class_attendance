@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             @if (!Auth::guest())
-                <h1>Welcome {{Auth::user()->name}}!</h1>
+                <h2>Welcome!</h2>
             @endif
         </div>
     </div>

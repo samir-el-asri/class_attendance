@@ -65,7 +65,8 @@ class MatieresController extends Controller
      */
     public function show(Matiere $matiere)
     {
-        //dd($matiere->enseignant);
+        $matiere = Matiere::find($matiere->id);
+        return view("matieres.show", compact('matiere'));
     }
 
     /**
