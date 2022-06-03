@@ -24,7 +24,7 @@
                         <option value="vacataire">Vacataire</option>
                         <option value="permanent">Permanent</option>
                     </select></div>
-                    <div class="form-group"><button class="btn btn-primary w-100" type="submit">Ajouter</button></div>
+                    <div class="form-group"><button class="btn btn-primary w-100 mt-2" type="submit">Ajouter</button></div>
                 </form>
             </div>
         </div>

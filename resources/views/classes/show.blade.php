@@ -16,7 +16,7 @@
             @csrf
             <button class="btn btn-primary btn-danger" type="submit">Supprimer</button>
         </form>
-        <div class="table-responsive text-center">
+        <div class="table-responsive text-center d-inline-table">
             <table class="table">
                 <thead>
                     <tr>
@@ -28,6 +28,27 @@
                         <tr>
                             <td>
                                 <a class="text-muted text-decoration-none" href="etudiants/{{$etudiant->id}}">{{$etudiant->prenom." ".$etudiant->nom}}</a>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+        <div class="table-responsive text-center d-inline-table">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th colspan="2">Les Seances</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($classe->seances as $seance)
+                        <tr>
+                            <td>
+                                <a class="text-muted text-decoration-none" href="/matieres/{{$seance->matiere->id}}">{{$seance->matiere->titre}}</a>
+                            </td>
+                            <td>
+                                {{$seance->date}}
                             </td>
                         </tr>
                     @endforeach

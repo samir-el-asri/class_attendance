@@ -17,7 +17,7 @@
                         <label for="abbreviation">Abbreviation: </label>
                         <input type="text" class="form-control" id="abbreviation" name="abbreviation" value="{{$filiere->abbreviation}}"/>
                     </div>
-                    <div class="form-group"><button class="btn btn-primary w-100" type="submit">Modifier</button></div>
+                    <div class="form-group"><button class="btn btn-primary w-100 mt-2" type="submit">Modifier</button></div>
                 </form>
             </div>
         </div>

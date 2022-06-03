@@ -42,14 +42,22 @@ class MatieresController extends Controller
     {
         $this->validate($request, [
             'titre' => 'required',
+            'annee' => 'required',
             'coefficient' => 'required',
+            'nbreSeances' => 'required',
+            'dureeSeance' => 'required',
+            'dateDebut' => 'required',
             'filiere_id' => 'required',
             'enseignant_id' => 'required'
         ]);
 
         $matiere = new Matiere;
         $matiere->titre = $request->input("titre");
+        $matiere->annee = $request->input("annee");
         $matiere->coefficient = $request->input("coefficient");
+        $matiere->nbreSeances = $request->input("nbreSeances");
+        $matiere->dureeSeance = $request->input("dureeSeance");
+        $matiere->dateDebut = $request->input("dateDebut");
         $matiere->filiere_id = $request->input("filiere_id");
         $matiere->enseignant_id = $request->input("enseignant_id");
         $matiere->save();
@@ -80,7 +88,14 @@ class MatieresController extends Controller
         $matiere = Matiere::find($matiere->id);
         $filieres = Filiere::all();
         $enseignants = Enseignant::all();
-        return view("matieres.edit", compact('matiere', 'filieres', 'enseignants'));
+
+        $annees = [
+            ["3", "3éme année"],
+            ["4", "4éme année"],
+            ["5", "5éme année"]
+        ];
+
+        return view("matieres.edit", compact('matiere', 'filieres', 'enseignants', 'annees'));
     }
 
     /**
@@ -94,8 +109,12 @@ class MatieresController extends Controller
     {
         $data = request()->validate([
             'titre' => 'required',
+            // 'annee' => 'required',
             'coefficient' => 'required',
-            'filiere_id' => 'required',
+            // 'nbreSeances' => 'required',
+            'dureeSeance' => 'required',
+            // 'dateDebut' => 'required',
+            // 'filiere_id' => 'required',
             'enseignant_id' => 'required'
         ]);
         
@@ -113,6 +132,13 @@ class MatieresController extends Controller
     public function destroy(Matiere $matiere)
     {
         $matiere = Matiere::find($matiere->id);
+
+        $seances = $matiere->seances;
+
+        foreach ($seances as $seance) {
+            $seance->delete();
+        }
+
         $matiere->delete();
 
         return redirect('/matieres')->with("success", "La matiere a été supprimée!");

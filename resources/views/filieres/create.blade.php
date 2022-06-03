@@ -16,7 +16,7 @@
                         <label for="abbreviation">Abbreviation: </label>
                         <input type="text" class="form-control" id="abbreviation" name="abbreviation" />
                     </div>
-                    <div class="form-group"><button class="btn btn-primary w-100" type="submit">Ajouter</button></div>
+                    <div class="form-group"><button class="btn btn-primary w-100 mt-2" type="submit">Ajouter</button></div>
                 </form>
             </div>
         </div>

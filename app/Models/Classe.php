@@ -22,4 +22,9 @@ class Classe extends Model
     {
         return $this->belongsTo(Filiere::class, "filiere_id");
     }
+    
+    public function seances()
+    {
+        return $this->hasMany(Seance::class);
+    }
 }

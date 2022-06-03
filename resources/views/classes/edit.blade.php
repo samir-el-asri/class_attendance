@@ -34,7 +34,7 @@
                     <div class="form-group"><label for="anneeScolaire">Année Scolaire</label><input type="text"
                             class="form-control" id="anneeScolaire" placeholder="2022/2023" name="anneeScolaire" value="{{$classe->anneeScolaire}}" />
                     </div>
-                    <div class="form-group"><button class="btn btn-primary w-100" type="submit">Modifier</button></div>
+                    <div class="form-group"><button class="btn btn-primary w-100 mt-2" type="submit">Modifier</button></div>
                 </form>
             </div>
         </div>

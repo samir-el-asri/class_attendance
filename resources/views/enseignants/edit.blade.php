@@ -35,7 +35,7 @@
                             @endif
                         </select>
                     </div>
-                    <div class="form-group"><button class="btn btn-primary w-100" type="submit">Modifier</button></div>
+                    <div class="form-group"><button class="btn btn-primary w-100 mt-2" type="submit">Modifier</button></div>
                 </form>
             </div>
         </div>

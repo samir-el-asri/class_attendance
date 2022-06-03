@@ -25,7 +25,7 @@
                     <div class="form-group"><label for="anneeScolaire">Année Scolaire:</label><input type="text"
                             class="form-control" id="anneeScolaire" placeholder="2022/2023" name="anneeScolaire" />
                     </div>
-                    <div class="form-group"><button class="btn btn-primary w-100" type="submit">Ajouter</button></div>
+                    <div class="form-group"><button class="btn btn-primary w-100 mt-2" type="submit">Ajouter</button></div>
                 </form>
             </div>
         </div>
