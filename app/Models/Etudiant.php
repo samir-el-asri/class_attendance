@@ -15,10 +15,24 @@ class Etudiant extends Model
 
     protected static function boot(){
         parent::boot();
+        static::created(function($etudiant){
+            $etudiant->user()->create([
+                'name' => $etudiant->prenom." ".$etudiant->nom,
+                'email' => $etudiant->email,
+                'password' => $etudiant->password,
+                'fonction' => 'etudiant'
+            ]);
+            $etudiant->save();
+        });
     }
     
     public function Classe()
     {
         return $this->belongsTo(Classe::class, "classe_id", "id");
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

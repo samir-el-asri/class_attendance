@@ -20,6 +20,8 @@ class CreateEnseignantsTable extends Migration
                 $table->string("prenom");
                 $table->integer("niveauAcademique");
                 $table->string("statut");
+                $table->string('email')->unique();
+                $table->string('password');
                 $table->timestamps();
             });
         }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Enseignant;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class EnseignantsController extends Controller
 {
@@ -40,7 +41,9 @@ class EnseignantsController extends Controller
             'nom' => 'required',
             'prenom' => 'required',
             'niveauAcademique' => 'required',
-            'statut' => 'required'
+            'statut' => 'required',
+            'email' => 'required',
+            'password' => 'required'
         ]);
 
         $enseignant = new Enseignant;
@@ -48,6 +51,8 @@ class EnseignantsController extends Controller
         $enseignant->prenom = $request->input("prenom");
         $enseignant->niveauAcademique = $request->input("niveauAcademique");
         $enseignant->statut = $request->input("statut");
+        $enseignant->email = $request->input("email");
+        $enseignant->password = Hash::make($request->input("password"));
         $enseignant->save();
 
         return redirect('/enseignants')->with("success", "L'enseignant a été ajouté!");

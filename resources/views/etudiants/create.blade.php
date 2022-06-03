@@ -12,6 +12,10 @@
                             id="nom" name="nom" placeholder="Saisir votre nom" /></div>
                     <div class="form-group"><label for="prenom">Prenom:</label><input type="text" class="form-control"
                             id="prenom" name="prenom" placeholder="Saisir votre prenom" /></div>
+                    <div class="form-group"><label for="nom">Email:</label><input type="email" class="form-control"
+                            id="email" name="email" placeholder="Saisir votre Email" /></div>
+                    <div class="form-group"><label for="password">Password:</label><input type="password" class="form-control"
+                            id="password" name="password" placeholder="Saisir votre password" /></div>
                     <div class="form-group">
                         <label for="classe_id">Classe:</label>
                         <select class="form-control" id="classe_id" name="classe_id">

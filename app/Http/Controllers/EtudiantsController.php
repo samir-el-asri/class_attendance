@@ -6,6 +6,7 @@ use App\Models\Etudiant;
 use App\Models\Classe;
 use App\Models\Filiere;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class EtudiantsController extends Controller
 {
@@ -43,7 +44,9 @@ class EtudiantsController extends Controller
             'nom' => 'required',
             'prenom' => 'required',
             'age' => 'required',
-            'classe_id' => 'required'
+            'classe_id' => 'required',
+            'email' => 'required',
+            'password' => 'required'
         ]);
 
         $etudiant = new Etudiant;
@@ -51,6 +54,8 @@ class EtudiantsController extends Controller
         $etudiant->prenom = $request->input("prenom");
         $etudiant->age = $request->input("age");
         $etudiant->classe_id = $request->input("classe_id");
+        $etudiant->email = $request->input("email");
+        $etudiant->password = Hash::make($request->input("password"));
         $etudiant->save();
 
         return redirect('/etudiants')->with("success", "L'étudiant a été ajouté!");

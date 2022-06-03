@@ -20,6 +20,8 @@ class CreateEtudiantsTable extends Migration
                 $table->string("prenom");
                 $table->integer("age");
                 $table->integer("classe_id");
+                $table->string('email')->unique();
+                $table->string('password');
                 $table->timestamps();
             });
         }
