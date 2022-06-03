@@ -18,6 +18,9 @@ class CreateMatieresTable extends Migration
                 $table->id();
                 $table->string("titre");
                 $table->float("coefficient", 10, 2);
+                $table->integer("nbreSeances");
+                $table->float("dureeSeance", 10, 2);
+                $table->date("dateDebut")->default(NOW());
                 $table->integer("filiere_id");
                 $table->integer("enseignant_id");
                 $table->timestamps();

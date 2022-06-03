@@ -31,3 +31,4 @@ Route::resource('classes', ClassesController::class);
 Route::resource('matieres', MatieresController::class);
 Route::resource('filieres', FilieresController::class);
 Route::resource('enseignants', EnseignantsController::class);
+Route::resource('seances', EnseignantsController::class);

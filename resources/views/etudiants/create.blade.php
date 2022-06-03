@@ -22,7 +22,7 @@
                     </div>
                     <div class="form-group"><label for="age">Age: </label><input type="number" class="form-control"
                             id="age" min="18" max="30" name="age" /></div>
-                    <div class="form-group"><button class="btn btn-primary w-100" type="submit">Ajouter</button></div>
+                    <div class="form-group"><button class="btn btn-primary w-100 mt-2" type="submit">Ajouter</button></div>
                 </form>
             </div>
         </div>
