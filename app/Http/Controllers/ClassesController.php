@@ -27,6 +27,7 @@ class ClassesController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Classe::class);
         $filieres = Filiere::all();
         return view("classes.create", compact('filieres'));
     }
@@ -39,6 +40,8 @@ class ClassesController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('create', Classe::class);
+
         $this->validate($request, [
             'filiere_id' => 'required',
             'annee' => 'required',
@@ -65,6 +68,7 @@ class ClassesController extends Controller
     public function show($id)
     {
         $classe = Classe::find($id);
+        $this->authorize('view', $classe);
         return view("classes.show", compact('classe'));
     }
 
@@ -77,6 +81,7 @@ class ClassesController extends Controller
     public function edit($id)
     {
         $classe = Classe::find($id);
+        $this->authorize('update', $classe);
         $filieres = Filiere::all();
 
         $annees = [
@@ -98,6 +103,8 @@ class ClassesController extends Controller
     public function update(Request $request, $id)
     {
         $classe = Classe::find($id);
+
+        $this->authorize('update', $classe);
         
         $data = request()->validate([
             'filiere_id' => 'required',
@@ -120,6 +127,7 @@ class ClassesController extends Controller
     public function destroy($id)
     {
         $classe = Classe::find($id);
+        $this->authorize('delete', $classe);
         $classe->delete();
 
         return redirect('/classes')->with("success", "La classe a été supprimée!");

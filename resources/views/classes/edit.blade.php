@@ -9,7 +9,7 @@
                 <form method="post" action="/classes/{{$classe->id}}">
                     @csrf
                     @method('PUT')
-                    <div class="form-group"><label for="filiere">Filiére:</label><select class="form-control"
+                    <div class="form-group"><label class="font-weight-bold" for="filiere">Filiére:</label><select class="form-control"
                             name="filiere_id">
                             @foreach ($filieres as $filiere)
                                 @if ($filiere->id == $classe->filiere_id)
@@ -19,7 +19,7 @@
                                 @endif
                             @endforeach
                         </select></div>
-                    <div class="form-group"><label for="annee">Année: </label><select class="form-control" id="annee"
+                    <div class="form-group"><label class="font-weight-bold" for="annee">Année: </label><select class="form-control" id="annee"
                             name="annee">
                             @foreach ($annees as $annee)
                                 @if ($classe->annee == $annee[0])
@@ -29,9 +29,9 @@
                                 @endif
                             @endforeach
                         </select></div>
-                    <div class="form-group"><label for="groupe">Groupe:</label><input type="text" class="form-control"
+                    <div class="form-group"><label class="font-weight-bold" for="groupe">Groupe:</label><input type="text" class="form-control"
                             id="groupe" placeholder="G1" name="groupe" value="{{$classe->groupe}}" /></div>
-                    <div class="form-group"><label for="anneeScolaire">Année Scolaire</label><input type="text"
+                    <div class="form-group"><label class="font-weight-bold" for="anneeScolaire">Année Scolaire</label><input type="text"
                             class="form-control" id="anneeScolaire" placeholder="2022/2023" name="anneeScolaire" value="{{$classe->anneeScolaire}}" />
                     </div>
                     <div class="form-group"><button class="btn btn-primary w-100 mt-2" type="submit">Modifier</button></div>

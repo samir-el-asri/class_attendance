@@ -26,6 +26,7 @@ class EnseignantsController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Enseignant::class);
         return view("enseignants.create");
     }
 
@@ -37,9 +38,12 @@ class EnseignantsController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('create', Enseignant::class);
+
         $this->validate($request, [
             'nom' => 'required',
             'prenom' => 'required',
+            'sexe' => 'required',
             'niveauAcademique' => 'required',
             'statut' => 'required',
             'email' => 'required',
@@ -49,6 +53,7 @@ class EnseignantsController extends Controller
         $enseignant = new Enseignant;
         $enseignant->nom = $request->input("nom");
         $enseignant->prenom = $request->input("prenom");
+        $enseignant->sexe = $request->input("sexe");
         $enseignant->niveauAcademique = $request->input("niveauAcademique");
         $enseignant->statut = $request->input("statut");
         $enseignant->email = $request->input("email");
@@ -67,6 +72,7 @@ class EnseignantsController extends Controller
     public function show(Enseignant $enseignant)
     {
         $enseignant = Enseignant::find($enseignant->id);
+        $this->authorize('view', $enseignant);
         return view("enseignants.show", compact('enseignant'));
     }
 
@@ -79,6 +85,7 @@ class EnseignantsController extends Controller
     public function edit(Enseignant $enseignant)
     {
         $enseignant = Enseignant::find($enseignant->id);
+        $this->authorize('update', $enseignant);
         $levels = [
             ["3", "BAC+3"],
             ["5", "BAC+5"],
@@ -97,9 +104,12 @@ class EnseignantsController extends Controller
      */
     public function update(Request $request, Enseignant $enseignant)
     {
+        $this->authorize('update', $enseignant);
+        
         $data = request()->validate([
             'nom' => 'required',
             'prenom' => 'required',
+            'sexe' => 'required',
             'niveauAcademique' => 'required',
             'statut' => 'required'
         ]);
@@ -118,6 +128,8 @@ class EnseignantsController extends Controller
     public function destroy(Enseignant $enseignant)
     {
         $enseignant = Enseignant::find($enseignant->id);
+        $this->authorize('delete', $enseignant);
+        $enseignant->user->delete();
         $enseignant->delete();
 
         return redirect('/enseignants')->with("success", "L'enseignant a été supprimé!");

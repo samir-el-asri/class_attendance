@@ -18,10 +18,12 @@ class CreateEnseignantsTable extends Migration
                 $table->id();
                 $table->string("nom");
                 $table->string("prenom");
+                $table->char('sexe', 1);
                 $table->integer("niveauAcademique");
                 $table->string("statut");
                 $table->string('email')->unique();
                 $table->string('password');
+                $table->integer("user_id")->nullable();;
                 $table->timestamps();
             });
         }

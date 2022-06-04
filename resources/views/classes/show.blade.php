@@ -26,9 +26,13 @@
                 <tbody>
                     @foreach ($classe->etudiants as $etudiant)
                         <tr>
-                            <td>
-                                <a class="text-muted text-decoration-none" href="etudiants/{{$etudiant->id}}">{{$etudiant->prenom." ".$etudiant->nom}}</a>
-                            </td>
+                            @can('view', $etudiant)
+                                <td>
+                                    <a class="text-muted text-decoration-none" href="/etudiants/{{$etudiant->id}}">{{$etudiant->prenom." ".$etudiant->nom}}</a>
+                                </td>
+                            @else
+                                <td>{{$etudiant->prenom." ".$etudiant->nom}}</td>
+                            @endcan
                         </tr>
                     @endforeach
                 </tbody>
@@ -38,17 +42,14 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th colspan="2">Les Seances</th>
+                        <th colspan="2">Les Matieres</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($classe->seances as $seance)
+                    @foreach ($classe->filiere->matieres as $matiere)
                         <tr>
                             <td>
-                                <a class="text-muted text-decoration-none" href="/matieres/{{$seance->matiere->id}}">{{$seance->matiere->titre}}</a>
-                            </td>
-                            <td>
-                                {{$seance->date}}
+                                <a class="text-muted text-decoration-none" href="/matieres/{{$matiere->id}}">{{$matiere->titre}}</a>
                             </td>
                         </tr>
                     @endforeach

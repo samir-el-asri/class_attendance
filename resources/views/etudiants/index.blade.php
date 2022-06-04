@@ -15,11 +15,13 @@
                 </thead>
                 <tbody>
                     @foreach ($etudiants as $etudiant)
-                        <tr>
-                            <td>
-                                <a class="text-muted text-decoration-none" href="etudiants/{{$etudiant->id}}">{{$etudiant->prenom." ".$etudiant->nom}}</a>
-                            </td>
-                        </tr>
+                        @can('view', $etudiant)
+                            <tr>
+                                <td>
+                                    <a class="text-muted text-decoration-none" href="etudiants/{{$etudiant->id}}">{{$etudiant->prenom." ".$etudiant->nom}}</a>
+                                </td>
+                            </tr>
+                        @endcan
                     @endforeach
                 </tbody>
             </table>

@@ -9,12 +9,26 @@
                 <form method="post" action="/enseignants/{{$enseignant->id}}">
                     @csrf
                     @method('PUT')
-                    <div class="form-group"><label for="nom">Nom:</label><input type="text" value="{{$enseignant->nom}}" class="form-control"
+                    <div class="form-group"><label class="font-weight-bold" for="nom">Nom:</label><input type="text" value="{{$enseignant->nom}}" class="form-control"
                             id="nom" name="nom" /></div>
-                    <div class="form-group"><label for="prenom">Prenom:</label><input type="text" value="{{$enseignant->prenom}}"
+                    <div class="form-group"><label class="font-weight-bold" for="prenom">Prenom:</label><input type="text" value="{{$enseignant->prenom}}"
                             class="form-control" id="prenom" name="prenom" />
                     </div>
-                    <div class="form-group"><label for="niveauAcademique">Niveau Académique: </label><select class="form-control" id="niveauAcademique"
+                    <div class="form-group mt-2 mb-2">
+                        Sexe:
+                        @if ($enseignant->sexe == 'M')
+                            <label class="form-check-label" class="font-weight-bold" for="M">M:</label>
+                            <input checked type="radio" class="form-check-input" id="M" name="sexe" value="M" />
+                            <label class="form-check-label" class="font-weight-bold" for="F">F:</label>
+                            <input type="radio" class="form-check-input" id="F" name="sexe" value="F" />
+                        @else
+                            <label class="form-check-label" class="font-weight-bold" for="M">M:</label>
+                            <input type="radio" class="form-check-input" id="M" name="sexe" value="M" />
+                            <label class="form-check-label" class="font-weight-bold" for="F">F:</label>
+                            <input checked type="radio" class="form-check-input" id="F" name="sexe" value="F" />
+                        @endif
+                    </div>
+                    <div class="form-group"><label class="font-weight-bold" for="niveauAcademique">Niveau Académique: </label><select class="form-control" id="niveauAcademique"
                         name="niveauAcademique">
                         @foreach ($levels as $level)
                             @if ($enseignant->niveauAcademique == $level[0])
@@ -24,7 +38,7 @@
                             @endif
                         @endforeach
                     </select></div>
-                    <div class="form-group"><label for="statut">Statut: </label>
+                    <div class="form-group"><label class="font-weight-bold" for="statut">Statut: </label>
                         <select class="form-control" id="statut" name="statut">
                             @if ($enseignant->statut == "vacataire")
                                 <option selected value="vacataire">Vacataire</option>

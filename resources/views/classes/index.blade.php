@@ -15,11 +15,13 @@
                 </thead>
                 <tbody>
                     @foreach ($classes as $classe)
-                        <tr>
-                            <td>
-                                <a class="text-muted text-decoration-none" href="classes/{{$classe->id}}">{{$classe->annee.$classe->filiere->abbreviation."-".$classe->groupe}}</a>
-                            </td>
-                        </tr>
+                        @can('view', $classe)
+                            <tr>
+                                <td>
+                                    <a class="text-muted text-decoration-none" href="classes/{{$classe->id}}">{{$classe->annee.$classe->filiere->abbreviation."-".$classe->groupe}}</a>
+                                </td>
+                            </tr>
+                        @endcan
                     @endforeach
                 </tbody>
             </table>

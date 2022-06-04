@@ -27,6 +27,7 @@ class MatieresController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Matiere::class);
         $filieres = Filiere::all();
         $enseignants = Enseignant::all();
         return view("matieres.create", compact('filieres', 'enseignants'));
@@ -40,6 +41,7 @@ class MatieresController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('create', Matiere::class);
         $this->validate($request, [
             'titre' => 'required',
             'annee' => 'required',
@@ -74,6 +76,7 @@ class MatieresController extends Controller
     public function show(Matiere $matiere)
     {
         $matiere = Matiere::find($matiere->id);
+        $this->authorize('view', $matiere);
         return view("matieres.show", compact('matiere'));
     }
 
@@ -86,6 +89,7 @@ class MatieresController extends Controller
     public function edit(Matiere $matiere)
     {
         $matiere = Matiere::find($matiere->id);
+        $this->authorize('update', $matiere);
         $filieres = Filiere::all();
         $enseignants = Enseignant::all();
 
@@ -107,6 +111,7 @@ class MatieresController extends Controller
      */
     public function update(Request $request, Matiere $matiere)
     {
+        $this->authorize('update', $matiere);
         $data = request()->validate([
             'titre' => 'required',
             // 'annee' => 'required',
@@ -132,6 +137,7 @@ class MatieresController extends Controller
     public function destroy(Matiere $matiere)
     {
         $matiere = Matiere::find($matiere->id);
+        $this->authorize('delete', $matiere);
 
         $seances = $matiere->seances;
 

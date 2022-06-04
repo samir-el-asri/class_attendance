@@ -15,11 +15,13 @@
                 </thead>
                 <tbody>
                     @foreach ($matieres as $matiere)
-                        <tr>
-                            <td>
-                                <a class="text-muted text-decoration-none" href="matieres/{{$matiere->id}}">{{$matiere->titre}}</a>
-                            </td>
-                        </tr>
+                        @can('view', $matiere)
+                            <tr>
+                                <td>
+                                    <a class="text-muted text-decoration-none" href="matieres/{{$matiere->id}}">{{$matiere->titre}}</a>
+                                </td>
+                            </tr>
+                        @endcan
                     @endforeach
                 </tbody>
             </table>

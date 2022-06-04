@@ -10,7 +10,7 @@ class Etudiant extends Model
     use HasFactory;
 
     protected $fillable = [
-        'nom', 'prenom', 'age', 'classe_id'
+        'nom', 'prenom', 'age', 'sexe', 'classe_id'
     ];
 
     protected static function boot(){
@@ -22,6 +22,9 @@ class Etudiant extends Model
                 'password' => $etudiant->password,
                 'fonction' => 'etudiant'
             ]);
+            $etudiant->save();
+
+            $etudiant->user_id = User::where('email', $etudiant->email)->pluck('id')->first();
             $etudiant->save();
         });
     }

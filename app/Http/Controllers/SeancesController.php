@@ -24,7 +24,7 @@ class SeancesController extends Controller
      */
     public function create()
     {
-        //
+        $this->authorize('create', Seance::class);
     }
 
     /**
@@ -35,7 +35,7 @@ class SeancesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->authorize('create', Seance::class);
     }
 
     /**
@@ -57,7 +57,7 @@ class SeancesController extends Controller
      */
     public function edit(Seance $seance)
     {
-        //
+        $this->authorize('update', $seance);
     }
 
     /**
@@ -69,7 +69,7 @@ class SeancesController extends Controller
      */
     public function update(Request $request, Seance $seance)
     {
-        //
+        $this->authorize('update', $seance);
     }
 
     /**
@@ -80,6 +80,6 @@ class SeancesController extends Controller
      */
     public function destroy(Seance $seance)
     {
-        //
+        $this->authorize('delete', $seance);
     }
 }

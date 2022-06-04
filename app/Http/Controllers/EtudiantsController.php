@@ -28,6 +28,7 @@ class EtudiantsController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Etudiant::class);
         $classes = Classe::all();
         return view("etudiants.create", compact("classes"));
     }
@@ -40,9 +41,11 @@ class EtudiantsController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('create', Etudiant::class);
         $this->validate($request, [
             'nom' => 'required',
             'prenom' => 'required',
+            'sexe' => 'required',
             'age' => 'required',
             'classe_id' => 'required',
             'email' => 'required',
@@ -52,6 +55,7 @@ class EtudiantsController extends Controller
         $etudiant = new Etudiant;
         $etudiant->nom = $request->input("nom");
         $etudiant->prenom = $request->input("prenom");
+        $etudiant->sexe = $request->input("sexe");
         $etudiant->age = $request->input("age");
         $etudiant->classe_id = $request->input("classe_id");
         $etudiant->email = $request->input("email");
@@ -70,7 +74,7 @@ class EtudiantsController extends Controller
     public function show(Etudiant $etudiant)
     {
         $etudiant = Etudiant::find($etudiant->id);
-        // dd($etudiant->classe);
+        $this->authorize('view', $etudiant);
         return view("etudiants.show", compact('etudiant'));
     }
 
@@ -83,7 +87,7 @@ class EtudiantsController extends Controller
     public function edit(Etudiant $etudiant)
     {
         $etudiant = Etudiant::find($etudiant->id);
-
+        $this->authorize('update', $etudiant);
         $classes = Classe::all();
         $newClasses = [];
         foreach ($classes as $classe) {
@@ -104,9 +108,11 @@ class EtudiantsController extends Controller
      */
     public function update(Request $request, Etudiant $etudiant)
     {
+        $this->authorize('update', $etudiant);
         $data = request()->validate([
             'nom' => 'required',
             'prenom' => 'required',
+            'sexe' => 'required',
             'age' => 'required',
             'classe_id' => 'required'
         ]);
@@ -125,6 +131,8 @@ class EtudiantsController extends Controller
     public function destroy(Etudiant $etudiant)
     {
         $etudiant = Etudiant::find($etudiant->id);
+        $this->authorize('delete', $etudiant);
+        $etudiant->user->delete();
         $etudiant->delete();
 
         return redirect('/etudiants')->with("success", "L'etudiant' a été supprimé!");

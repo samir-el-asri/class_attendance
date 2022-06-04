@@ -10,7 +10,7 @@ class Enseignant extends Model
     use HasFactory;
 
     protected $fillable = [
-        'nom', 'prenom', 'niveauAcademique', 'statut'
+        'nom', 'prenom', 'sexe', 'niveauAcademique', 'statut'
     ];
 
     protected static function boot(){
@@ -23,6 +23,9 @@ class Enseignant extends Model
                 'fonction' => 'enseignant'
             ]);
             $enseignant->save();
+            
+            $enseignant->user_id = User::where('email', $enseignant->email)->pluck('id')->first();
+            $enseignant->save();
         });
     }
 
@@ -33,6 +36,6 @@ class Enseignant extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

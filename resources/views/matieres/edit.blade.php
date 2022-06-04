@@ -9,9 +9,9 @@
                 <form method="post" action="/matieres/{{$matiere->id}}">
                     @csrf
                     @method('PUT')
-                    <div class="form-group"><label for="titre">Titre:</label><input type="text" class="form-control"
+                    <div class="form-group"><label class="font-weight-bold" for="titre">Titre:</label><input type="text" class="form-control"
                             id="titre" name="titre" value="{{$matiere->titre}}" /></div>
-                    {{-- <div class="form-group"><label for="annee">Année: </label><select class="form-control" id="annee"
+                    {{-- <div class="form-group"><label class="font-weight-bold" for="annee">Année: </label><select class="form-control" id="annee"
                             name="annee">
                             @foreach ($annees as $annee)
                             @if ($matiere->annee == $annee[0])
@@ -21,14 +21,14 @@
                             @endif
                             @endforeach
                         </select></div> --}}
-                    <div class="form-group"><label for="coefficient">Coefficient:</label><input type="number" min="1"
+                    <div class="form-group"><label class="font-weight-bold" for="coefficient">Coefficient:</label><input type="number" min="1"
                             step="0.01" class="form-control" id="coefficient" name="coefficient"
                             value="{{$matiere->coefficient}}" />
                     </div>
-                    <div class="form-group"><label for="dureeSeance">Duree Seance (H):</label><input type="number" min="0"
+                    <div class="form-group"><label class="font-weight-bold" for="dureeSeance">Duree Seance (H):</label><input type="number" min="0"
                             step="0.01" class="form-control" id="dureeSeance" name="dureeSeance" value="{{$matiere->dureeSeance}}"/>
                     </div>
-                    {{-- <div class="form-group"><label for="filiere">Filiére:</label><select class="form-control"
+                    {{-- <div class="form-group"><label class="font-weight-bold" for="filiere">Filiére:</label><select class="form-control"
                             name="filiere_id">
                             @foreach ($filieres as $filiere)
                             @if ($filiere->id == $matiere->filiere_id)
@@ -38,7 +38,7 @@
                             @endif
                             @endforeach
                         </select></div> --}}
-                    <div class="form-group"><label for="enseignant">Enseignant:</label><select class="form-control"
+                    <div class="form-group"><label class="font-weight-bold" for="enseignant">Enseignant:</label><select class="form-control"
                             name="enseignant_id">
                             @foreach ($enseignants as $enseignant)
                             @if ($enseignant->id == $matiere->enseignant_id)

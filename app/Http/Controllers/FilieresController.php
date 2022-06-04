@@ -27,6 +27,7 @@ class FilieresController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Filiere::class);
         return view("filieres.create");
     }
 
@@ -38,6 +39,7 @@ class FilieresController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('create', Filiere::class);
         $this->validate($request, [
             'titre' => 'required',
             'abbreviation' => 'required'
@@ -60,6 +62,7 @@ class FilieresController extends Controller
     public function show(Filiere $filiere)
     {
         $filiere = Filiere::find($filiere->id);
+        $this->authorize('view', $filiere);
         return view("filieres.show", compact('filiere'));
     }
 
@@ -72,6 +75,7 @@ class FilieresController extends Controller
     public function edit(Filiere $filiere)
     {
         $filiere = Filiere::find($filiere->id);
+        $this->authorize('update', $filiere);
         return view("filieres.edit", compact("filiere"));
     }
 
@@ -84,6 +88,7 @@ class FilieresController extends Controller
      */
     public function update(Request $request, Filiere $filiere)
     {
+        $this->authorize('update', $filiere);
         $data = request()->validate([
             'titre' => 'required',
             'abbreviation' => 'required'
@@ -103,6 +108,7 @@ class FilieresController extends Controller
     public function destroy(Filiere $filiere)
     {
         $filiere = Filiere::find($filiere->id);
+        $this->authorize('delete', $filiere);
         $filiere->delete();
 
         return redirect('/filieres')->with("success", "La filiere a été supprimée!");

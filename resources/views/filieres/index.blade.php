@@ -15,11 +15,13 @@
                 </thead>
                 <tbody>
                     @foreach ($filieres as $filiere)
-                    <tr>
-                        <td>
-                            <a class="text-muted text-decoration-none" href="filieres/{{$filiere->id}}">{{$filiere->titre}}</a>
-                        </td>
-                    </tr>
+                        @can('view', $filiere)
+                            <tr>
+                                <td>
+                                    <a class="text-muted text-decoration-none" href="filieres/{{$filiere->id}}">{{$filiere->titre}}</a>
+                                </td>
+                            </tr>
+                        @endcan
                     @endforeach
                 </tbody>
             </table>
