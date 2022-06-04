@@ -18,13 +18,10 @@ use App\Http\Controllers\EnseignantsController;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
-
 Auth::routes();
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\ClassesController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\ClassesController::class, 'index'])->name('home');
 
 Route::resource('etudiants', EtudiantsController::class);
 Route::resource('classes', ClassesController::class);

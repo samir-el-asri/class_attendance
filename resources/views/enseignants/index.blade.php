@@ -27,12 +27,12 @@
             </table>
         </div>
 
-        {{-- @if (!Auth::guest()) --}}
-        <hr>
-        <a class="text-white" href="/enseignants/create">
-            <button class="btn btn-success">Ajouter un nouveau enseignant</button>
-        </a>
-        {{-- @endif --}}
+        @can('create', $enseignant)
+            <hr>
+            <a class="text-white" href="/enseignants/create">
+                <button class="btn btn-success">Ajouter un nouveau enseignant</button>
+            </a>
+        @endcan
     </div>
 
 </div>

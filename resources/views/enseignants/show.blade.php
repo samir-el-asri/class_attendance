@@ -9,12 +9,14 @@
         <h6 class="text-muted card-subtitle mb-2">Niveau Académique: BAC+{{$enseignant->niveauAcademique}}</h6>
         <h6 class="text-muted card-subtitle mb-2">Statut: {{$enseignant->statut}}</h6>
         <h6 class="text-muted card-subtitle mb-2">Nombre des matieres: {{$enseignant->matieres->count()}}</h6>
-        <a href="/enseignants/{{$enseignant->id}}/edit"><button class="btn btn-primary btn-warning" type="button">Modifier</button></a>
-        <form method="post" action="/enseignants/{{$enseignant->id}}" class="d-inline">
-            @method('DELETE')
-            @csrf
-            <button class="btn btn-primary btn-danger" type="submit">Supprimer</button>
-        </form>
+        @canany(['update', 'delete'], $enseignant)
+            <a href="/enseignants/{{$enseignant->id}}/edit"><button class="btn btn-primary btn-warning" type="button">Modifier</button></a>
+            <form method="post" action="/enseignants/{{$enseignant->id}}" class="d-inline">
+                @method('DELETE')
+                @csrf
+                <button class="btn btn-primary btn-danger" type="submit">Supprimer</button>
+            </form>
+        @endcanany
         <div class="table-responsive text-center">
             <table class="table">
                 <thead>

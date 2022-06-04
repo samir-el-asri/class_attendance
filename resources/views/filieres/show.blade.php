@@ -7,12 +7,15 @@
         <h4 class="card-title">{{$filiere->titre}}</h4>
         <h6 class="text-muted card-subtitle mb-2">Nombre des matieres: {{$filiere->matieres->count()}}</h6>
         <h6 class="text-muted card-subtitle mb-2">Nombre des classes: {{$filiere->classes->count()}}</h6>
-        <a href="/filieres/{{$filiere->id}}/edit"><button class="btn btn-primary btn-warning" type="button">Modifier</button></a>
-        <form method="post" action="/filieres/{{$filiere->id}}" class="d-inline">
-            @method('DELETE')
-            @csrf
-            <button class="btn btn-primary btn-danger" type="submit">Supprimer</button>
-        </form><br>
+        @canany(['update', 'delete'], $filiere)
+            <a href="/filieres/{{$filiere->id}}/edit"><button class="btn btn-primary btn-warning" type="button">Modifier</button></a>
+            <form method="post" action="/filieres/{{$filiere->id}}" class="d-inline">
+                @method('DELETE')
+                @csrf
+                <button class="btn btn-primary btn-danger" type="submit">Supprimer</button>
+            </form>
+        @endcanany
+        <br>
         <div class="table-responsive text-center d-inline-block col-6">
             <table class="table">
                 <thead>

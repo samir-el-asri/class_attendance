@@ -27,12 +27,12 @@
             </table>
         </div>
 
-        {{-- @if (!Auth::guest()) --}}
-        <hr>
-        <a class="text-white" href="/filieres/create">
-            <button class="btn btn-success">Ajouter une nouvelle filiere</button>
-        </a>
-        {{-- @endif --}}
+        @can('create', $filiere)
+            <hr>
+            <a class="text-white" href="/filieres/create">
+                <button class="btn btn-success">Ajouter une nouvelle filiere</button>
+            </a>
+        @endcan
     </div>
 </div>
 

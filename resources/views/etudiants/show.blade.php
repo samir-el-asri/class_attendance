@@ -10,13 +10,14 @@
         <a class="card-link text-decoration-none" href="/classes/{{$etudiant->classe->id}}">
             <h6 class="text-muted mb-2">Classe: {{$etudiant->classe->annee.$etudiant->classe->filiere->abbreviation."-".$etudiant->classe->groupe}}</h6>
         </a>
-        <a href="/etudiants/{{$etudiant->id}}/edit"><button class="btn btn-primary btn-warning" type="button">Modifier</button></a>
+        @canany(['update', 'delete'], $etudiant)
+            <a href="/etudiants/{{$etudiant->id}}/edit"><button class="btn btn-primary btn-warning" type="button">Modifier</button></a>
             <form method="post" action="/etudiants/{{$etudiant->id}}" class="d-inline">
                 @method('DELETE')
                 @csrf
                 <button class="btn btn-primary btn-danger" type="submit">Supprimer</button>
             </form>
-        </td>
+        @endcanany
     </div>
 </div>
 @endsection

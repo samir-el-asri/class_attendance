@@ -27,12 +27,12 @@
             </table>
         </div>
 
-        {{-- @if (!Auth::guest()) --}}
-        <hr>
-        <a class="text-white" href="/matieres/create">
-            <button class="btn btn-success">Ajouter une nouvelle matiere</button>
-        </a>
-        {{-- @endif --}}
+        @can('create', $matiere)
+            <hr>
+            <a class="text-white" href="/matieres/create">
+                <button class="btn btn-success">Ajouter une nouvelle matiere</button>
+            </a>
+        @endcan
     </div>
 
 </div>

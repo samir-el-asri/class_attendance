@@ -10,12 +10,14 @@
         <h6 class="text-muted card-subtitle mb-2">Groupe: {{$classe->groupe}}</h6>
         <h6 class="text-muted card-subtitle mb-2">Année Scolaire: {{$classe->anneeScolaire}}</h6>
         <h6 class="text-muted card-subtitle mb-2">Nombre des etudiants: {{$classe->etudiants->count()}}</h6>
-        <a href="/classes/{{$classe->id}}/edit"><button class="btn btn-primary btn-warning" type="button">Modifier</button></a>
-        <form method="post" action="/classes/{{$classe->id}}" class="d-inline">
-            @method('DELETE')
-            @csrf
-            <button class="btn btn-primary btn-danger" type="submit">Supprimer</button>
-        </form>
+        @canany(['update', 'delete'], $classe)
+            <a href="/classes/{{$classe->id}}/edit"><button class="btn btn-primary btn-warning" type="button">Modifier</button></a>
+            <form method="post" action="/classes/{{$classe->id}}" class="d-inline">
+                @method('DELETE')
+                @csrf
+                <button class="btn btn-primary btn-danger" type="submit">Supprimer</button>
+            </form>
+        @endcanany
         <div class="table-responsive text-center d-inline-table">
             <table class="table">
                 <thead>
