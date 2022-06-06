@@ -33,14 +33,16 @@
                 </thead>
                 <tbody>
                     @foreach ($matiere->seances->sortBy('date') as $seance)
-                        <tr>
-                            <td>
-                                <a class="text-muted text-decoration-none" href="/seances/{{$seance->id}}">{{$seance->date}}</a>
-                            </td>
-                            <td>
-                                <a class="text-muted text-decoration-none" href="/classes/{{$seance->classe->id}}">{{$seance->classe->annee.$seance->classe->filiere->abbreviation."-".$seance->classe->groupe}}</a>
-                            </td>
-                        </tr>
+                        @can("view", $seance)
+                            <tr>
+                                <td>
+                                    <a class="text-muted text-decoration-none" href="/seances/{{$seance->id}}">{{$seance->date}}</a>
+                                </td>
+                                <td>
+                                    <a class="text-muted text-decoration-none" href="/classes/{{$seance->classe->id}}">{{$seance->classe->annee.$seance->classe->filiere->abbreviation."-".$seance->classe->groupe}}</a>
+                                </td>
+                            </tr>
+                        @endcan
                     @endforeach
                 </tbody>
             </table>

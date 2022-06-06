@@ -33,7 +33,12 @@ class SeancePolicy
         if(!($user->fonction === "admin")){
             // Tester que l'enseignant enseigne la matiere de cette seance
             if($user->fonction === "enseignant"){
-                return $user->enseignant == $seance->matiere->enseignant;
+                return $user->enseignant->id == $seance->matiere->enseignant->id;
+            }
+
+            // Tester que l'etudiant est membre de classe de cette seance
+            if($user->fonction === "etudiant"){
+                return $user->etudiant->classe->id == $seance->classe->id;
             }
         }
         else
