@@ -6,6 +6,8 @@ use App\Http\Controllers\ClassesController;
 use App\Http\Controllers\MatieresController;
 use App\Http\Controllers\FilieresController;
 use App\Http\Controllers\EnseignantsController;
+use App\Http\Controllers\SeancesController;
+use App\Http\Controllers\AbsencesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,12 +22,16 @@ use App\Http\Controllers\EnseignantsController;
 
 Auth::routes();
 
-Route::get('/', [App\Http\Controllers\ClassesController::class, 'index'])->name('home');
-Route::get('/home', [App\Http\Controllers\ClassesController::class, 'index'])->name('home');
+Route::get('/', function () {
+    return view('home');
+});
+
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::resource('etudiants', EtudiantsController::class);
 Route::resource('classes', ClassesController::class);
 Route::resource('matieres', MatieresController::class);
 Route::resource('filieres', FilieresController::class);
 Route::resource('enseignants', EnseignantsController::class);
-Route::resource('seances', EnseignantsController::class);
+Route::resource('seances', SeancesController::class);
+Route::resource('absences', AbsencesController::class);

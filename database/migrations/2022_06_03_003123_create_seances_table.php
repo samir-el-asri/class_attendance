@@ -17,6 +17,7 @@ class CreateSeancesTable extends Migration
             Schema::create('seances', function (Blueprint $table) {
                 $table->id();
                 $table->date("date");
+                $table->boolean("absenceMarquee")->default(0);
                 $table->integer("matiere_id");
                 $table->integer("classe_id");
                 $table->timestamps();

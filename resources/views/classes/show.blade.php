@@ -27,15 +27,17 @@
                 </thead>
                 <tbody>
                     @foreach ($classe->etudiants as $etudiant)
-                        <tr>
-                            @can('view', $etudiant)
+                        @can('view', $etudiant)
+                            <tr>
                                 <td>
                                     <a class="text-muted text-decoration-none" href="/etudiants/{{$etudiant->id}}">{{$etudiant->prenom." ".$etudiant->nom}}</a>
                                 </td>
-                            @else
+                            </tr>
+                        @else
+                            <tr>
                                 <td>{{$etudiant->prenom." ".$etudiant->nom}}</td>
-                            @endcan
-                        </tr>
+                            </tr>
+                        @endcan
                     @endforeach
                 </tbody>
             </table>
@@ -49,11 +51,13 @@
                 </thead>
                 <tbody>
                     @foreach ($classe->filiere->matieres as $matiere)
-                        <tr>
-                            <td>
-                                <a class="text-muted text-decoration-none" href="/matieres/{{$matiere->id}}">{{$matiere->titre}}</a>
-                            </td>
-                        </tr>
+                        @can('view', $matiere)
+                            <tr>
+                                <td>
+                                    <a class="text-muted text-decoration-none" href="/matieres/{{$matiere->id}}">{{$matiere->titre}}</a>
+                                </td>
+                            </tr>
+                        @endcan
                     @endforeach
                 </tbody>
             </table>

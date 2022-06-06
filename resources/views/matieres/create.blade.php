@@ -8,6 +8,7 @@
             <div class="col-md-12 col-lg-7 mx-auto">
                 <form method="post" action="/matieres">
                     @csrf
+                    <legend>Créer un nouvelle matiére:</legend>
                     <div class="form-group"><label class="font-weight-bold" for="titre">Titre:</label><input type="text" class="form-control"
                             id="titre" name="titre" />
                     </div>

@@ -8,9 +8,10 @@
             <div class="col-md-12 col-lg-7 mx-auto">
                 <form method="post" action="/enseignants">
                     @csrf
-                    <div class="form-group"><label class="font-weight-bold" for="nom">Nom:</label><input type="text" class="form-control"
+                    <legend>Créer un nouveau enseignent:</legend>
+                    <div class="form-group"><label class="font-weight-bold" for="nom">Nom:</label><input placeholder="saisir votre nom" type="text" class="form-control"
                             id="nom" name="nom" /></div>
-                    <div class="form-group"><label class="font-weight-bold" for="prenom">Prenom:</label><input type="text"
+                    <div class="form-group"><label class="font-weight-bold" for="prenom">Prenom:</label><input placeholder="saisir votre prenom" type="text"
                             class="form-control" id="prenom" name="prenom" />
                     </div>
                     <div class="form-group mt-2 mb-2">

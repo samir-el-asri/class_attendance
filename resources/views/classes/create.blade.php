@@ -8,6 +8,7 @@
             <div class="col-md-12 col-lg-7 mx-auto">
                 <form method="post" action="/classes">
                     @csrf
+                    <legend>Créer une nouvelle classe:</legend>
                     <div class="form-group"><label class="font-weight-bold" for="filiere">Filiére:</label><select class="form-control"
                             name="filiere_id">
                             @foreach ($filieres as $filiere)

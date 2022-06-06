@@ -19,6 +19,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ asset('/css/jquery-ui.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('/css/bootstrap.min.css') }}">
 </head>
 
 <body>

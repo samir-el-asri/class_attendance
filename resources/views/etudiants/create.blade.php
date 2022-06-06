@@ -8,6 +8,7 @@
             <div class="col-md-12 col-lg-7 mx-auto">
                 <form method="post" action="/etudiants">
                     @csrf
+                    <legend>Créer un nouveau étudiant:</legend>
                     <div class="form-group"><label class="font-weight-bold" for="nom">Nom:</label><input type="text" class="form-control"
                             id="nom" name="nom" placeholder="Saisir votre nom" /></div>
                     <div class="form-group"><label class="font-weight-bold" for="prenom">Prenom:</label><input type="text" class="form-control"
@@ -31,7 +32,7 @@
                             @endforeach
                         </select>
                     </div>
-                    <div class="form-group"><label class="font-weight-bold" for="age">Age: </label><input type="number" class="form-control"
+                    <div class="form-group"><label class="font-weight-bold" for="age">Age: </label><input placeholder=18 type="number" class="form-control"
                             id="age" min="18" max="30" name="age" /></div>
                     <div class="form-group"><button class="btn btn-primary w-100 mt-2" type="submit">Ajouter</button></div>
                 </form>

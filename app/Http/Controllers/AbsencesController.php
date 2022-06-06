@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Seance;
 use App\Models\Absence;
+use App\Models\Seance;
+use App\Models\Etudiant;
 use Illuminate\Http\Request;
 
-class SeancesController extends Controller
+class AbsencesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -25,7 +26,7 @@ class SeancesController extends Controller
      */
     public function create()
     {
-        $this->authorize('create', Seance::class);
+        //
     }
 
     /**
@@ -36,54 +37,66 @@ class SeancesController extends Controller
      */
     public function store(Request $request)
     {
-        $this->authorize('create', Seance::class);
+        $this->validate($request, [
+            'presence' => 'required'
+        ]);
+
+        $seance = Seance::find($request->input("seance_id"));
+        foreach($request->input("presence") as $e){
+            $absence = new Absence;
+            $absence->date = $seance->date;
+            $absence->seance_id = $seance->id;
+            $absence->etudiant_id = $e;
+            $absence->save();
+        }
+        $seance->absenceMarquee = true;
+        $seance->save();
+
+        return back()->with("success", "La présence a été saisie!");
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Seance  $seance
+     * @param  \App\Models\Absence  $absence
      * @return \Illuminate\Http\Response
      */
-    public function show(Seance $seance)
+    public function show(Absence $absence)
     {
-        $seance = Seance::find($seance->id);
-        $this->authorize('view', $seance);
-        $absences = Absence::where("seance_id", $seance->id)->pluck('etudiant_id')->all();
-        return view("seances.show", compact('seance', 'absences'));
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Seance  $seance
+     * @param  \App\Models\Absence  $absence
      * @return \Illuminate\Http\Response
      */
-    public function edit(Seance $seance)
+    public function edit(Absence $absence)
     {
-        $this->authorize('update', $seance);
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Seance  $seance
+     * @param  \App\Models\Absence  $absence
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Seance $seance)
+    public function update(Request $request, Absence $absence)
     {
-        $this->authorize('update', $seance);
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Seance  $seance
+     * @param  \App\Models\Absence  $absence
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Seance $seance)
+    public function destroy(Absence $absence)
     {
-        $this->authorize('delete', $seance);
+        //
     }
 }

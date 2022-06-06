@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\Seance;
+use App\Models\Absence;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class SeancePolicy
+class AbsencePolicy
 {
     use HandlesAuthorization;
 
@@ -25,19 +25,12 @@ class SeancePolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Seance  $seance
+     * @param  \App\Models\Absence  $absence
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Seance $seance)
+    public function view(User $user, Absence $absence)
     {
-        if(!($user->fonction === "admin")){
-            // Tester que l'enseignant enseigne la matiere de cette seance
-            if($user->fonction === "enseignant"){
-                return $user->enseignant == $seance->matiere->enseignant;
-            }
-        }
-        else
-            return true;
+        //
     }
 
     /**
@@ -48,41 +41,48 @@ class SeancePolicy
      */
     public function create(User $user)
     {
-        return $user->fonction === "admin";
+        if(!($user->fonction === "admin")){
+            // ...?!!!
+            if($user->fonction === "enseignant"){
+                return true;
+            }
+        }
+        else
+            return true;
     }
 
     /**
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Seance  $seance
+     * @param  \App\Models\Absence  $absence
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Seance $seance)
+    public function update(User $user, Absence $absence)
     {
-        return $user->fonction === "admin";
+        //
     }
 
     /**
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Seance  $seance
+     * @param  \App\Models\Absence  $absence
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Seance $seance)
+    public function delete(User $user, Absence $absence)
     {
-        return $user->fonction === "admin";
+        //
     }
 
     /**
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Seance  $seance
+     * @param  \App\Models\Absence  $absence
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, Seance $seance)
+    public function restore(User $user, Absence $absence)
     {
         //
     }
@@ -91,10 +91,10 @@ class SeancePolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Seance  $seance
+     * @param  \App\Models\Absence  $absence
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, Seance $seance)
+    public function forceDelete(User $user, Absence $absence)
     {
         //
     }
