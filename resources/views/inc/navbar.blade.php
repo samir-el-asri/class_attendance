@@ -39,6 +39,8 @@
                                 </div>
                             </li>
                             <li role="presentation" class="nav-item"><a class="nav-link" href="/absences">Absences</a></li>
+                            <i class="fa fa-search mr-2" id="search-field" name="search"></i>
+                            <input type="search" class="form-control ml-auto w-25 rounded-8 h-25" placeholder="recherche..." />
                         </ul>
                     @break
                     @case("enseignant")

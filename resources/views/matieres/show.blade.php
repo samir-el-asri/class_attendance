@@ -33,16 +33,21 @@
                 </thead>
                 <tbody>
                     @foreach ($matiere->seances->sortBy('date') as $seance)
-                        @can("view", $seance)
-                            <tr>
-                                <td>
-                                    <a class="text-muted text-decoration-none" href="/seances/{{$seance->id}}">{{$seance->date}}</a>
-                                </td>
-                                <td>
-                                    <a class="text-muted text-decoration-none" href="/classes/{{$seance->classe->id}}">{{$seance->classe->annee.$seance->classe->filiere->abbreviation."-".$seance->classe->groupe}}</a>
-                                </td>
-                            </tr>
-                        @endcan
+                        <tr>
+                            @can("view", $seance)
+                                @if (Auth()->user()->fonction == "etudiant")
+                                    <td>{{$seance->date}}</td>
+                                    <td>{{$seance->classe->annee.$seance->classe->filiere->abbreviation."-".$seance->classe->groupe}}</td>
+                                @else
+                                    <td>
+                                        <a class="text-muted text-decoration-none" href="/seances/{{$seance->id}}">{{$seance->date}}</a>
+                                    </td>
+                                    <td>
+                                        <a class="text-muted text-decoration-none" href="/classes/{{$seance->classe->id}}">{{$seance->classe->annee.$seance->classe->filiere->abbreviation."-".$seance->classe->groupe}}</a>
+                                    </td>
+                                @endif
+                            @endcan
+                        </tr>
                     @endforeach
                 </tbody>
             </table>

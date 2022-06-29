@@ -43,4 +43,9 @@ class Etudiant extends Model
     {
         return $this->hasMany(Absence::class);
     }
+    
+    public function justifications()
+    {
+        return $this->hasMany(Justification::class);
+    }
 }

@@ -8,6 +8,7 @@ use App\Http\Controllers\FilieresController;
 use App\Http\Controllers\EnseignantsController;
 use App\Http\Controllers\SeancesController;
 use App\Http\Controllers\AbsencesController;
+use App\Http\Controllers\JustificationsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,3 +36,4 @@ Route::resource('filieres', FilieresController::class);
 Route::resource('enseignants', EnseignantsController::class);
 Route::resource('seances', SeancesController::class);
 Route::resource('absences', AbsencesController::class);
+Route::resource('justifications', JustificationsController::class);

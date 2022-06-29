@@ -16751,7 +16751,10 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 $(function () {
   $("#tabs").tabs();
-  $("#seancesTabs").tabs(); // Show the first tab and hide the rest
+  $("#etudiantsAbsencesTabs").tabs();
+  $("#seancesTabs").tabs();
+  $("#adminTabs").tabs();
+  $("#adminTabs2").tabs(); // Show the first tab and hide the rest
 
   $('#tabs-nav li:first-child').addClass('active');
   $('.tab-content').hide();

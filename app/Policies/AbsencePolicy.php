@@ -18,7 +18,7 @@ class AbsencePolicy
      */
     public function viewAny(User $user)
     {
-        //
+        //return $user->fonction == "etudiant";
     }
 
     /**

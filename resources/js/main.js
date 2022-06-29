@@ -1,6 +1,9 @@
 $(function () {
     $("#tabs").tabs();
+    $("#etudiantsAbsencesTabs").tabs();
     $("#seancesTabs").tabs();
+    $("#adminTabs").tabs();
+    $("#adminTabs2").tabs();
 
     // Show the first tab and hide the rest
     $('#tabs-nav li:first-child').addClass('active');
