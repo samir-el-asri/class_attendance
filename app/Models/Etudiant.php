@@ -4,10 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
 
 class Etudiant extends Model
 {
     use HasFactory;
+    use Searchable;
+
+    protected $touches = ['classe'];
 
     protected $fillable = [
         'nom', 'prenom', 'age', 'sexe', 'classe_id'
@@ -47,5 +51,31 @@ class Etudiant extends Model
     public function justifications()
     {
         return $this->hasMany(Justification::class);
+    }
+
+    /**
+     * Get the indexable data array for the model.
+     *
+     * @return array
+     */
+    public function toSearchableArray()
+    {
+        $array = $this->toArray();
+        $array = $this->only('nom', 'prenom', 'age');
+        $array = $this->transform($array);
+
+        $array['classe_id'] = $this->filiere_id;
+        
+        return $array;
+    }
+
+    /**
+     * Get the index name for the model.
+     *
+     * @return string
+     */
+    public function searchableAs()
+    {
+        return 'classes_index';
     }
 }

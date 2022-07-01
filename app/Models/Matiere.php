@@ -4,10 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
 
 class Matiere extends Model
 {
     use HasFactory;
+    use Searchable;
+
+    protected $touches = ['enseignant', 'filiere'];
 
     protected $fillable = [
         'titre', 'coefficient', 'nbreSeance', 'dureeSeance', 'dateDebut', 'annee', 'filiere_id', 'enseignant_id'
@@ -50,5 +54,32 @@ class Matiere extends Model
     public function seances()
     {
         return $this->hasMany(Seance::class);
+    }
+
+    /**
+     * Get the indexable data array for the model.
+     *
+     * @return array
+     */
+    public function toSearchableArray()
+    {
+        $array = $this->toArray();
+        $array = $this->only('titre', 'coefficient', 'dureeSeance', 'nbreSeance', 'annee', 'dateDebut');
+        $array = $this->transform($array);
+
+        $array['enseignant_id'] = $this->enseignant_id;
+        $array['filiere_id'] = $this->filiere_id;
+        
+        return $array;
+    }
+
+    /**
+     * Get the index name for the model.
+     *
+     * @return string
+     */
+    public function searchableAs()
+    {
+        return 'matieres_index';
     }
 }
