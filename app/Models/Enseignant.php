@@ -48,7 +48,13 @@ class Enseignant extends Model
      */
     public function toSearchableArray()
     {
-        $array = $this->only('nom', 'prenom', 'niveauAcademique', 'statut');
+        $array = $this->toArray();
+        $array = $this->transform($array);
+
+        $array["enseignant_nom"] = $this->nom;
+        $array["enseignant_prenom"] = $this->prenom;
+        $array["enseignant_statut"] = $this->statut;
+        $array["enseignant_email"] = $this->email;
         return $array;
     }
 

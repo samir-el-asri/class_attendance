@@ -32,7 +32,12 @@ class Filiere extends Model
      */
     public function toSearchableArray()
     {
-        $array = $this->only('titre', 'abbreviation');
+        $array = $this->toArray();
+        $array = $this->transform($array);
+
+        $array["filiere_titre"] = $this->titre;
+        $array["filiere_abbreviation"] = $this->abbreviation;
+
         return $array;
     }
 

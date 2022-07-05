@@ -40,11 +40,13 @@ class Classe extends Model
     public function toSearchableArray()
     {
         $array = $this->toArray();
-        $array = $this->only('annee', 'groupe', 'anneeScolaire');
         $array = $this->transform($array);
 
         $titre = $this->annee.$this->filiere->abbreviation."-".$this->groupe;
-        $array['titre'] = $titre;
+        $array['classe_titre'] = $titre;
+        $array['classe_filiereTitre'] = $this->filiere->titre;
+        $array['classe_filiereAbbreviation'] = $this->filiere->abbreviation;
+
         $array['filiere_id'] = $this->filiere_id;
         
         return $array;

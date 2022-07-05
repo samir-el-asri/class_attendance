@@ -4,6 +4,7 @@ $(function () {
     $("#seancesTabs").tabs();
     $("#adminTabs").tabs();
     $("#adminTabs2").tabs();
+    $("#searchTabs").tabs();
 
     // Show the first tab and hide the rest
     $('#tabs-nav li:first-child').addClass('active');

@@ -64,6 +64,10 @@ class Etudiant extends Model
         $array = $this->only('nom', 'prenom', 'age');
         $array = $this->transform($array);
 
+        $array['etudiant_nom'] = $this->nom;
+        $array['etudiant_prenom'] = $this->prenom;
+        $array['etudiant_email'] = $this->email;
+
         $array['classe_id'] = $this->filiere_id;
         
         return $array;
@@ -76,6 +80,6 @@ class Etudiant extends Model
      */
     public function searchableAs()
     {
-        return 'classes_index';
+        return 'etudiants_index';
     }
 }

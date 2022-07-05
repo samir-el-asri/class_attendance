@@ -64,8 +64,9 @@ class Matiere extends Model
     public function toSearchableArray()
     {
         $array = $this->toArray();
-        $array = $this->only('titre', 'coefficient', 'dureeSeance', 'nbreSeance', 'annee', 'dateDebut');
         $array = $this->transform($array);
+
+        $array['matiere_titre'] = $this->titre;
 
         $array['enseignant_id'] = $this->enseignant_id;
         $array['filiere_id'] = $this->filiere_id;

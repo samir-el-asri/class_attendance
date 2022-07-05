@@ -39,8 +39,12 @@
                                 </div>
                             </li>
                             <li role="presentation" class="nav-item"><a class="nav-link" href="/absences">Absences</a></li>
-                            <i class="fa fa-search mr-2" id="search-field" name="search"></i>
-                            <input type="search" class="form-control ml-auto w-25 rounded-8 h-25" placeholder="recherche..." />
+                            
+                            <form class="form-inline ml-4" method="GET" action="/search">
+                                @csrf
+                                <input required class="form-control mr-sm-2" name="search" type="search" placeholder="rechercher..." aria-label="Search">
+                                <button class="btn btn-light" type="submit">Search</button>
+                            </form>
                         </ul>
                     @break
                     @case("enseignant")
