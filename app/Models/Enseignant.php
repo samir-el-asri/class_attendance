@@ -40,6 +40,10 @@ class Enseignant extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    function profilePhoto(){
+        return "/storage/profile_photos/enseignants/".$this->profilePhoto;
+    }
     
     /**
      * Get the indexable data array for the model.

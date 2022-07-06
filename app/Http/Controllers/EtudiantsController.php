@@ -7,6 +7,7 @@ use App\Models\Classe;
 use App\Models\Filiere;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class EtudiantsController extends Controller
 {
@@ -42,6 +43,7 @@ class EtudiantsController extends Controller
     public function store(Request $request)
     {
         $this->authorize('create', Etudiant::class);
+
         $this->validate($request, [
             'nom' => 'required',
             'prenom' => 'required',
@@ -49,8 +51,18 @@ class EtudiantsController extends Controller
             'age' => 'required',
             'classe_id' => 'required',
             'email' => 'required',
-            'password' => 'required'
+            'password' => 'required',
+            'profilePhoto' => 'required|max:5000'
         ]);
+        
+        if ($request->hasFile('profilePhoto')) {
+            $filenameWithExtension = $request->file("profilePhoto")->getClientOriginalName();
+            $extension = $request->file("profilePhoto")->getClientOriginalExtension();
+            $filenameWithoutExtension = pathinfo($filenameWithExtension, PATHINFO_FILENAME);
+            $filenameToStore = $filenameWithoutExtension."_etudiantEmail_".$request->input("email")."_".time().".".$extension;
+
+            $request->file("profilePhoto")->storeAs("public/profile_photos/etudiants", $filenameToStore);
+        }
 
         $etudiant = new Etudiant;
         $etudiant->nom = $request->input("nom");
@@ -60,6 +72,7 @@ class EtudiantsController extends Controller
         $etudiant->classe_id = $request->input("classe_id");
         $etudiant->email = $request->input("email");
         $etudiant->password = Hash::make($request->input("password"));
+        $etudiant->profilePhoto = $filenameToStore;
         $etudiant->save();
 
         return redirect('/etudiants')->with("success", "L'étudiant a été ajouté!");
@@ -116,7 +129,20 @@ class EtudiantsController extends Controller
             'age' => 'required',
             'classe_id' => 'required'
         ]);
-        
+
+        if ($request->hasFile('profilePhoto')) {
+            if($etudiant->profilePhoto != "noimage.jpg")
+                Storage::delete("public/profile_photos/etudiants/".$etudiant->profilePhoto);
+
+            $filenameWithExtension = $request->file("profilePhoto")->getClientOriginalName();
+            $extension = $request->file("profilePhoto")->getClientOriginalExtension();
+            $filenameWithoutExtension = pathinfo($filenameWithExtension, PATHINFO_FILENAME);
+            $filenameToStore = $filenameWithoutExtension."_etudiantEmail_".$request->input("email")."_".time().".".$extension;
+
+            $request->file("profilePhoto")->storeAs("public/profile_photos/etudiants", $filenameToStore);
+
+            $etudiant->profilePhoto = $filenameToStore;
+        }
         $etudiant->update($data);
         
         return redirect('/etudiants')->with("success", "L'étudiant a été modifié!");

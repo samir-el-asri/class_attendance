@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Enseignant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class EnseignantsController extends Controller
 {
@@ -47,8 +48,18 @@ class EnseignantsController extends Controller
             'niveauAcademique' => 'required',
             'statut' => 'required',
             'email' => 'required',
-            'password' => 'required'
+            'password' => 'required',
+            'profilePhoto' => 'required|max:5000'
         ]);
+        
+        if ($request->hasFile('profilePhoto')) {
+            $filenameWithExtension = $request->file("profilePhoto")->getClientOriginalName();
+            $extension = $request->file("profilePhoto")->getClientOriginalExtension();
+            $filenameWithoutExtension = pathinfo($filenameWithExtension, PATHINFO_FILENAME);
+            $filenameToStore = $filenameWithoutExtension."_enseignantEmail_".$request->input("email")."_".time().".".$extension;
+
+            $request->file("profilePhoto")->storeAs("public/profile_photos/enseignants", $filenameToStore);
+        }
 
         $enseignant = new Enseignant;
         $enseignant->nom = $request->input("nom");
@@ -58,6 +69,7 @@ class EnseignantsController extends Controller
         $enseignant->statut = $request->input("statut");
         $enseignant->email = $request->input("email");
         $enseignant->password = Hash::make($request->input("password"));
+        $enseignant->profilePhoto = $filenameToStore;
         $enseignant->save();
 
         return redirect('/enseignants')->with("success", "L'enseignant a été ajouté!");
@@ -111,9 +123,23 @@ class EnseignantsController extends Controller
             'prenom' => 'required',
             'sexe' => 'required',
             'niveauAcademique' => 'required',
-            'statut' => 'required'
+            'statut' => 'required',
+            'profilePhoto' => 'nullable|image|max:5000'
         ]);
-        
+
+        if ($request->hasFile('profilePhoto')) {
+            if($enseignant->profilePhoto != "noimage.jpg")
+                Storage::delete("public/profile_photos/enseignants/".$enseignant->profilePhoto);
+
+            $filenameWithExtension = $request->file("profilePhoto")->getClientOriginalName();
+            $extension = $request->file("profilePhoto")->getClientOriginalExtension();
+            $filenameWithoutExtension = pathinfo($filenameWithExtension, PATHINFO_FILENAME);
+            $filenameToStore = $filenameWithoutExtension."_enseignantEmail_".$request->input("email")."_".time().".".$extension;
+
+            $request->file("profilePhoto")->storeAs("public/profile_photos/enseignants", $filenameToStore);
+
+            $enseignant->profilePhoto = $filenameToStore;
+        }
         $enseignant->update($data);
         
         return redirect('/enseignants')->with("success", "L'enseignant a été modifié!");

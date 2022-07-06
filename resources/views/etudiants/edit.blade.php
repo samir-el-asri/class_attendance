@@ -6,9 +6,13 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12 col-lg-7 mx-auto">
-                <form method="post" action="/etudiants/{{$etudiant->id}}">
+                <form method="post" action="/etudiants/{{$etudiant->id}}" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
+                    <div class="form-group">
+                        <label for="profilePhoto">Profile Photo (max: 5MB):</label>
+                        <input type="file" class="form-control" name="profilePhoto">
+                    </div>
                     <div class="form-group"><label class="font-weight-bold" for="nom">Nom:</label><input type="text" class="form-control"
                             id="nom" name="nom" placeholder="Saisir votre nom" value="{{$etudiant->nom}}" /></div>
                     <div class="form-group"><label class="font-weight-bold" for="prenom">Prenom:</label><input type="text" class="form-control"

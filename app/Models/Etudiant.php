@@ -53,6 +53,10 @@ class Etudiant extends Model
         return $this->hasMany(Justification::class);
     }
 
+    function profilePhoto(){
+        return "/storage/profile_photos/etudiants/".$this->profilePhoto;
+    }
+
     /**
      * Get the indexable data array for the model.
      *

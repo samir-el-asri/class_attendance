@@ -23,7 +23,8 @@ class CreateEtudiantsTable extends Migration
                 $table->integer("classe_id");
                 $table->string('email')->unique();
                 $table->string('password');
-                $table->integer("user_id")->nullable();;
+                $table->integer("user_id")->nullable();
+                $table->string("profilePhoto");
                 $table->timestamps();
             });
         }

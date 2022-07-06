@@ -3,6 +3,9 @@
 @section('content')
 <div class="card">
     <div class="card-body text-center">
+        <div class="mx-auto mb-2">
+            <img style="width: 100px; height: 100px;" class="border border-dark rounded-circle mx-auto" src="{{$enseignant->profilePhoto()}}">
+        </div>
         <h4 class="card-title">{{$enseignant->prenom." ".$enseignant->nom}}</h4>
         <h6 class="text-muted card-subtitle mb-2">Email: {{$enseignant->email}}</h6>
         <h6 class="text-muted card-subtitle mb-2">Sexe: {{$enseignant->sexe}}</h6>

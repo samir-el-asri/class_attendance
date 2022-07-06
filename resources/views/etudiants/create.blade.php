@@ -6,9 +6,13 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12 col-lg-7 mx-auto">
-                <form method="post" action="/etudiants">
+                <form method="post" action="/etudiants" enctype="multipart/form-data">
                     @csrf
                     <legend>Créer un nouveau étudiant:</legend>
+                    <div class="form-group">
+                        <label for="profilePhoto">Profile Photo (max: 5MB):</label>
+                        <input type="file" class="form-control" name="profilePhoto">
+                    </div>
                     <div class="form-group"><label class="font-weight-bold" for="nom">Nom:</label><input type="text" class="form-control"
                             id="nom" name="nom" placeholder="Saisir votre nom" /></div>
                     <div class="form-group"><label class="font-weight-bold" for="prenom">Prenom:</label><input type="text" class="form-control"
