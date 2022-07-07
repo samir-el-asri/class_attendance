@@ -15,4 +15,4 @@ mix.js('resources/js/app.js', 'public/js')
     .vue()
     .sass('resources/sass/app.scss', 'public/css');
 
-mix.browserSync('pfa');
+mix.browserSync('class_attendance');
